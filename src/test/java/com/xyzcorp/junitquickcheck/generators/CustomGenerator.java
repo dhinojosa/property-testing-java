@@ -1,16 +1,18 @@
-package com.xyzcorp.jqwik.generators;
+package com.xyzcorp.junitquickcheck.generators;
 
-import net.jqwik.api.*;
+import com.pholser.junit.quickcheck.generator.GenerationStatus;
+import com.pholser.junit.quickcheck.generator.Generator;
+import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 
-public class CountryGenerator {
+public class CustomGeneratorProperties extends Generator<String> {
 
-    @Property
-    public void countryProperty(@ForAll("countries") String countries) {
-        System.out.println(countries);
+    protected CustomGeneratorProperties(Class<String> type) {
+        super(type);
     }
 
-    @Provide(value = "countries")
-    Arbitrary<String> listOfCountries() {
+    @Override
+    public String generate(SourceOfRandomness sourceOfRandomness,
+                           GenerationStatus generationStatus) {
         String countries = "Afghanistan\n" +
             "Albania\n" +
             "Algeria\n" +
@@ -209,6 +211,10 @@ public class CountryGenerator {
             "Yemen\n" +
             "Zambia\n" +
             "Zimbabwe\n";
-        return Arbitraries.of(countries.split("\n"));
+
+        String[] countryArray = countries.split("\n");
+        int i = sourceOfRandomness.nextInt(countryArray.length - 1);
+        System.out.println(generationStatus);
+        return countryArray[i];
     }
 }

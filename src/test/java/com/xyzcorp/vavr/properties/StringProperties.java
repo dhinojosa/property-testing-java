@@ -6,9 +6,8 @@ import io.vavr.test.Property;
 import org.junit.jupiter.api.Test;
 
 public class StringProperties {
-
     @Test
-    public void lengthOfConcatenatedStringIsGreaterThanLengthOfEach() {
+    public void concatenationLengthIsGreaterThanEitherOfTheOriginals() {
         Arbitrary<String> strings = Arbitrary.string(
             Gen.oneOf(
                 Gen.choose('a', 'z'),

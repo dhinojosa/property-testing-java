@@ -1,4 +1,4 @@
-package com.xyzcorp.jqwik.shrinking;
+package com.xyzcorp.junitquickcheck.customshrinking;
 
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ShrinkingProperties {
+public class CustomShrinkingProperties {
 
     public List<Integer> badReverse(List<Integer> integers) {
         if (integers.size() > 4) return integers;

@@ -3,7 +3,7 @@ package com.xyzcorp.jqwik.generators;
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.WithNull;
 
-public class CustomGenerator {
+public class CustomGeneratorProperties {
 
     @Property
     public void countryProperty(@ForAll("countries") @WithNull(value = 0.1) String countries1,

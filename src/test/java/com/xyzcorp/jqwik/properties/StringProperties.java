@@ -6,7 +6,9 @@ import static org.assertj.core.api.Assertions.*;
 
 public class StringProperties {
     @Property
-    void lengthOfConcatenatedStringIsGreaterThanLengthOfEach(@ForAll String string1, @ForAll String string2) {
+    void concatenationLengthIsGreaterThanEitherOfTheOriginals(
+        @ForAll String string1, @ForAll String string2) {
+        System.out.format("%s, %s\n", string1, string2);
         String conc = string1 + string2;
         assertThat(conc.length()).isGreaterThan(string1.length());
         assertThat(conc.length()).isGreaterThan(string2.length());

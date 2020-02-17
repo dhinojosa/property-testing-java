@@ -6,11 +6,10 @@ import io.vavr.test.Gen;
 import io.vavr.test.Property;
 import org.junit.jupiter.api.Test;
 
-public class StringProperties {
+public class NullGeneratorProperties {
 
     @Test
     public void testLengthPropertyWithStringOrNull() {
-
         Arbitrary<String> stringOrNull = new Arbitrary<String>() {
             @Override
             public Gen<String> apply(int size) {

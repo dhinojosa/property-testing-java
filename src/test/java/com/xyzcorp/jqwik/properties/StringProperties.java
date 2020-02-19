@@ -4,6 +4,11 @@ import net.jqwik.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 
+/**
+ * This property test will fail.
+ * Notice the types of characters that are created.
+ * Notice what it told me was the issue
+ */
 public class StringProperties {
     @Property
     void concatenationLengthIsGreaterThanEitherOfTheOriginals(

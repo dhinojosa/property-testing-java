@@ -12,6 +12,7 @@ public class ConstraintStarvationProperties {
     @Property
     @Label("There are only nine values")
     public void testPrimality(@ForAll @IntRange(min=2, max = 10) Integer i) {
+        System.out.printf("%d%n", i);
         assertTrue(true);
     }
 }

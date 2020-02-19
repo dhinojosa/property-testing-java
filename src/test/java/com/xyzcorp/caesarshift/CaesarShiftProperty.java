@@ -7,7 +7,6 @@ import net.jqwik.api.constraints.AlphaChars;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CaesarShiftProperty {
-
     @Property
     void verifyThatCaesarShiftWorksForAllAlpha(
         @ForAll @AlphaChars String string,

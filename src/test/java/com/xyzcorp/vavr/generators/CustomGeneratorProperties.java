@@ -1,5 +1,6 @@
 package com.xyzcorp.vavr.generators;
 
+import io.vavr.collection.List;
 import io.vavr.test.Arbitrary;
 import io.vavr.test.Property;
 import org.junit.jupiter.api.Test;
@@ -213,6 +214,20 @@ public class CustomGeneratorProperties {
                 .forAll(countryArbitrary, countryArbitrary)
                 .suchThat((s1, s2) -> {
                     System.out.format("%s, %s%n", s1, s2);
+                    return true;
+                })
+                .check()
+                .assertIsSatisfied();
+    }
+
+    @Test
+    public void concatenationOfListsIsGreaterThanEitherOfTheOriginals() {
+        Arbitrary<List<String>> listOfCountries =
+            Arbitrary.list(countryArbitrary);
+        Property.def("comparing two countries")
+                .forAll(listOfCountries)
+                .suchThat((s1) -> {
+                    System.out.format("%s%n", s1);
                     return true;
                 })
                 .check()

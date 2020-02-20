@@ -1,18 +1,17 @@
 package com.xyzcorp.jqwik.generators;
 
 import net.jqwik.api.*;
-import net.jqwik.api.constraints.WithNull;
+
+import java.util.List;
 
 public class CustomGeneratorProperties {
-
-    @Property
-    public void countryProperty(@ForAll("countries") @WithNull(value = 0.1) String countries1,
-                                @ForAll("countries") @WithNull(value = 0.1) String countries2) {
-        System.out.format("%s %s", countries1, countries2);
+    @Provide(value = "countries")
+    Arbitrary<String> singleCountryProvider() {
+        String[] countryStrings = getCountryStrings();
+        return Arbitraries.of(countryStrings);
     }
 
-    @Provide(value = "countries")
-    Arbitrary<String> listOfCountries() {
+    private String[] getCountryStrings() {
         String countries = "Afghanistan\n" +
             "Albania\n" +
             "Algeria\n" +
@@ -211,7 +210,17 @@ public class CustomGeneratorProperties {
             "Yemen\n" +
             "Zambia\n" +
             "Zimbabwe\n";
-        String[] split = countries.split("\n");
-        return Arbitraries.of(split);
+        return countries.split("\n");
+    }
+
+    @Property
+    public void countryProperty(@ForAll("countries") String countries1,
+                                @ForAll("countries") String countries2) {
+        System.out.format("%s %s%n", countries1, countries2);
+    }
+
+    @Property
+    public void countryListProperty(@ForAll List<@From("countries") String> countryList) {
+        System.out.format("%s%n", countryList);
     }
 }

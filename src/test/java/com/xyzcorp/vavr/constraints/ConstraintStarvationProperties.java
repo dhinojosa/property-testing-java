@@ -17,6 +17,5 @@ public class ConstraintStarvationProperties {
                     return true;})
                 .check()
                 .assertIsSatisfied();
-
     }
 }
